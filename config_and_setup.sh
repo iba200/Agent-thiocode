@@ -8,22 +8,22 @@ set -e
 echo "🚀 Configuration de l'Agent IA de Développement Sécurisé"
 echo "========================================================"
 
-# Vérifier Python
-if ! command -v python3 &> /dev/null; then
-    echo "❌ Python3 non trouvé. Installez Python 3.8+"
-    exit 1
-fi
+# # Vérifier Python
+# if ! command -v python &> /dev/null; then
+#     echo "❌ Python3 non trouvé. Installez Python 3.8+"
+#     exit 1
+# fi
 
 echo "✅ Python3 détecté: $(python3 --version)"
 
-# Créer un environnement virtuel
-if [ ! -d "venv" ]; then
-    echo "📦 Création de l'environnement virtuel..."
-    python3 -m venv venv
-fi
+# # Créer un environnement virtuel
+# if [ ! -d "venv" ]; then
+#     echo "📦 Création de l'environnement virtuel..."
+#     python3 -m venv venv
+# fi
 
 # Activer l'environnement virtuel
-source venv/bin/activate || source venv/Scripts/activate
+# source venv/bin/activate || source venv/Scripts/activate
 
 # Installer les dépendances
 echo "📥 Installation des dépendances..."
@@ -44,7 +44,6 @@ PyJWT==2.8.0
 werkzeug==2.3.7
 
 # Database
-sqlite3
 
 # Utilities
 python-dotenv==1.0.0
@@ -73,7 +72,8 @@ if [ ! -f ".env" ]; then
 # ============================================
 
 # API Keys (REQUIS)
-GEMINI_API_KEY=your-gemini-api-key-here
+GEMINI_API_KEY=AIzaSyDmeXKxN1lCxwsyua5zCZm3pK44_a08fdI
+
 
 # Flask Configuration
 FLASK_SECRET_KEY=$(openssl rand -base64 32)

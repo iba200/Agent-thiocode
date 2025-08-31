@@ -1,0 +1,167 @@
+2025-08-31 01:26:56,167 - __main__ - [0m[31mERROR[0m[0m - ❌ GEMINI_API_KEY non définie
+2025-08-31 01:28:09,453 - __main__ - [0m[32mINFO[0m[0m - 👤 Utilisateur admin créé - API Key: ai_agent_FTk42w75mWU1FCs0-6yQNy9a6wcVnKHIEdSZXBLq0bw
+2025-08-31 01:28:09,454 - __main__ - [0m[32mINFO[0m[0m - 🚀 Démarrage de l'Agent IA de Développement Sécurisé v2.0
+2025-08-31 01:28:09,454 - __main__ - [0m[32mINFO[0m[0m - 🔒 Fonctionnalités de sécurité:
+2025-08-31 01:28:09,454 - __main__ - [0m[32mINFO[0m[0m -    ✅ Authentification par clé API
+2025-08-31 01:28:09,454 - __main__ - [0m[32mINFO[0m[0m -    ✅ Contrôle d'accès basé sur les rôles
+2025-08-31 01:28:09,454 - __main__ - [0m[32mINFO[0m[0m -    ✅ Validation avancée du code
+2025-08-31 01:28:09,455 - __main__ - [0m[32mINFO[0m[0m -    ✅ Monitoring de sécurité
+2025-08-31 01:28:09,455 - __main__ - [0m[32mINFO[0m[0m -    ✅ Rate limiting
+2025-08-31 01:28:09,455 - __main__ - [0m[32mINFO[0m[0m -    ✅ Logging sécurisé
+2025-08-31 01:28:09,455 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 01:28:09,455 - __main__ - [0m[32mINFO[0m[0m - 📋 Endpoints API v1:
+2025-08-31 01:28:09,455 - __main__ - [0m[32mINFO[0m[0m -    🔓 GET  /api/v1/health - État de l'API
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    👤 POST /api/v1/auth/register - Inscription
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    🤖 POST /api/v1/suggest - Suggestions de code
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    📁 POST /api/v1/analyze-project - Analyse de projet
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    ✅ POST /api/v1/validate-code - Validation de code
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    💾 GET/POST/DELETE /api/v1/session - Gestion des sessions
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    📖 GET  /api/v1/history - Historique utilisateur
+2025-08-31 01:28:09,456 - __main__ - [0m[32mINFO[0m[0m -    🔧 GET  /api/v1/admin/* - Endpoints administrateur
+2025-08-31 01:28:09,457 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 01:28:09,457 - __main__ - [0m[32mINFO[0m[0m - 🔑 Utilisez l'en-tête: X-API-Key: votre_cle_api
+2025-08-31 01:28:09,457 - __main__ - [0m[32mINFO[0m[0m - 🌐 API disponible sur: http://localhost:5000
+2025-08-31 01:28:09,470 - werkzeug - [0m[32mINFO[0m[0m - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.24:5000
+2025-08-31 01:28:09,470 - werkzeug - [0m[32mINFO[0m[0m - [33mPress CTRL+C to quit[0m
+2025-08-31 01:28:44,747 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 01:28:44] "[33mGET / HTTP/1.1[0m" 404 -
+2025-08-31 01:28:45,262 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 01:28:45] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-31 01:49:22,084 - __main__ - [0m[32mINFO[0m[0m - 👤 Utilisateur admin existant détecté
+2025-08-31 01:49:22,100 - __main__ - [0m[32mINFO[0m[0m - 🚀 Démarrage de l'Agent IA de Développement Sécurisé v2.0
+2025-08-31 01:49:22,100 - __main__ - [0m[32mINFO[0m[0m - 🔒 Fonctionnalités de sécurité:
+2025-08-31 01:49:22,100 - __main__ - [0m[32mINFO[0m[0m -    ✅ Authentification par clé API
+2025-08-31 01:49:22,100 - __main__ - [0m[32mINFO[0m[0m -    ✅ Contrôle d'accès basé sur les rôles
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    ✅ Validation avancée du code
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    ✅ Monitoring de sécurité
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    ✅ Rate limiting
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    ✅ Logging sécurisé
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m - 📋 Endpoints API v1:
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    🔓 GET  /api/v1/health - État de l'API
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    👤 POST /api/v1/auth/register - Inscription
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    🤖 POST /api/v1/suggest - Suggestions de code
+2025-08-31 01:49:22,101 - __main__ - [0m[32mINFO[0m[0m -    📁 POST /api/v1/analyze-project - Analyse de projet
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m -    ✅ POST /api/v1/validate-code - Validation de code
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m -    💾 GET/POST/DELETE /api/v1/session - Gestion des sessions
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m -    📖 GET  /api/v1/history - Historique utilisateur
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m -    🔧 GET  /api/v1/admin/* - Endpoints administrateur
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m - 🔑 Utilisez l'en-tête: X-API-Key: votre_cle_api
+2025-08-31 01:49:22,102 - __main__ - [0m[32mINFO[0m[0m - 🌐 API disponible sur: http://localhost:5000
+2025-08-31 01:49:22,114 - werkzeug - [0m[32mINFO[0m[0m - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.24:5000
+2025-08-31 01:49:22,114 - werkzeug - [0m[32mINFO[0m[0m - [33mPress CTRL+C to quit[0m
+2025-08-31 01:49:43,832 - __main__ - [0m[31mERROR[0m[0m - Erreur lors de l'inscription: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+2025-08-31 01:49:43,833 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 01:49:43] "[35m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 500 -
+2025-08-31 16:07:23,775 - __main__ - [0m[31mERROR[0m[0m - ❌ GEMINI_API_KEY non définie
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m - 👤 Utilisateur admin existant détecté
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m - 🚀 Démarrage de l'Agent IA de Développement Sécurisé v2.0
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m - 🔒 Fonctionnalités de sécurité:
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m -    ✅ Authentification par clé API
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m -    ✅ Contrôle d'accès basé sur les rôles
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m -    ✅ Validation avancée du code
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m -    ✅ Monitoring de sécurité
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m -    ✅ Rate limiting
+2025-08-31 16:07:32,121 - __main__ - [0m[32mINFO[0m[0m -    ✅ Logging sécurisé
+2025-08-31 16:07:32,122 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 16:07:32,122 - __main__ - [0m[32mINFO[0m[0m - 📋 Endpoints API v1:
+2025-08-31 16:07:32,122 - __main__ - [0m[32mINFO[0m[0m -    🔓 GET  /api/v1/health - État de l'API
+2025-08-31 16:07:32,122 - __main__ - [0m[32mINFO[0m[0m -    👤 POST /api/v1/auth/register - Inscription
+2025-08-31 16:07:32,122 - __main__ - [0m[32mINFO[0m[0m -    🤖 POST /api/v1/suggest - Suggestions de code
+2025-08-31 16:07:32,123 - __main__ - [0m[32mINFO[0m[0m -    📁 POST /api/v1/analyze-project - Analyse de projet
+2025-08-31 16:07:32,123 - __main__ - [0m[32mINFO[0m[0m -    ✅ POST /api/v1/validate-code - Validation de code
+2025-08-31 16:07:32,123 - __main__ - [0m[32mINFO[0m[0m -    💾 GET/POST/DELETE /api/v1/session - Gestion des sessions
+2025-08-31 16:07:32,123 - __main__ - [0m[32mINFO[0m[0m -    📖 GET  /api/v1/history - Historique utilisateur
+2025-08-31 16:07:32,123 - __main__ - [0m[32mINFO[0m[0m -    🔧 GET  /api/v1/admin/* - Endpoints administrateur
+2025-08-31 16:07:32,124 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 16:07:32,124 - __main__ - [0m[32mINFO[0m[0m - 🔑 Utilisez l'en-tête: X-API-Key: votre_cle_api
+2025-08-31 16:07:32,124 - __main__ - [0m[32mINFO[0m[0m - 🌐 API disponible sur: http://localhost:5000
+2025-08-31 16:07:32,215 - werkzeug - [0m[32mINFO[0m[0m - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.24:5000
+2025-08-31 16:07:32,215 - werkzeug - [0m[32mINFO[0m[0m - [33mPress CTRL+C to quit[0m
+2025-08-31 16:07:46,003 - __main__ - [0m[31mERROR[0m[0m - Erreur lors de l'inscription: 415 Unsupported Media Type: Did not attempt to load JSON data because the request Content-Type was not 'application/json'.
+2025-08-31 16:07:46,004 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:07:46] "[35m[1mPOST /api/v1/auth/register?username=iba200&password=ibt123 HTTP/1.1[0m" 500 -
+2025-08-31 16:08:01,026 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:08:01] "[31m[1mPOST /api/v1/auth/register HTTP/1.1[0m" 400 -
+2025-08-31 16:08:29,419 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:08:29] "POST /api/v1/auth/register HTTP/1.1" 200 -
+2025-08-31 16:09:54,075 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:09:54] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:11:08,497 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:11:08] "POST /api/v1/suggest HTTP/1.1" 200 -
+2025-08-31 16:12:52,427 - __main__ - [0m[31mERROR[0m[0m - Erreur dans analyze_project_structure_secure: 'SmartCodeAgent' object has no attribute 'analyze_project_structure'
+2025-08-31 16:12:52,482 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:12:52] "POST /api/v1/analyze-project HTTP/1.1" 200 -
+2025-08-31 16:13:21,933 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:13:21] "GET /api/v1/history?limit=5 HTTP/1.1" 200 -
+2025-08-31 16:33:39,608 - __main__ - [0m[32mINFO[0m[0m - 👤 Utilisateur admin existant détecté
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m - 🚀 Démarrage de l'Agent IA de Développement Sécurisé v2.0
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m - 🔒 Fonctionnalités de sécurité:
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m -    ✅ Authentification par clé API
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m -    ✅ Contrôle d'accès basé sur les rôles
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m -    ✅ Validation avancée du code
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m -    ✅ Monitoring de sécurité
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m -    ✅ Rate limiting
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m -    ✅ Logging sécurisé
+2025-08-31 16:33:39,609 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m - 📋 Endpoints API v1:
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    🔓 GET  /api/v1/health - État de l'API
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    👤 POST /api/v1/auth/register - Inscription
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    🤖 POST /api/v1/suggest - Suggestions de code
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    📁 POST /api/v1/analyze-project - Analyse de projet
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    ✅ POST /api/v1/validate-code - Validation de code
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    💾 GET/POST/DELETE /api/v1/session - Gestion des sessions
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    📖 GET  /api/v1/history - Historique utilisateur
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m -    🔧 GET  /api/v1/admin/* - Endpoints administrateur
+2025-08-31 16:33:39,610 - __main__ - [0m[32mINFO[0m[0m - 
+2025-08-31 16:33:39,611 - __main__ - [0m[32mINFO[0m[0m - 🔑 Utilisez l'en-tête: X-API-Key: votre_cle_api
+2025-08-31 16:33:39,611 - __main__ - [0m[32mINFO[0m[0m - 🌐 API disponible sur: http://localhost:5000
+2025-08-31 16:33:39,620 - werkzeug - [0m[32mINFO[0m[0m - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://192.168.1.24:5000
+2025-08-31 16:33:39,620 - werkzeug - [0m[32mINFO[0m[0m - [33mPress CTRL+C to quit[0m
+2025-08-31 16:33:49,171 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:33:49] "GET / HTTP/1.1" 200 -
+2025-08-31 16:33:49,518 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:33:49] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:34:27,213 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:34:27] "OPTIONS /api/v1/history?limit=1 HTTP/1.1" 200 -
+2025-08-31 16:34:52,249 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:34:52] "GET / HTTP/1.1" 200 -
+2025-08-31 16:35:19,292 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:35:19] "GET / HTTP/1.1" 200 -
+2025-08-31 16:35:19,360 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:35:19] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:35:40,325 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:35:40] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-08-31 16:35:48,263 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:35:48] "OPTIONS /api/v1/auth/register HTTP/1.1" 200 -
+2025-08-31 16:36:18,625 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:36:18] "OPTIONS /api/v1/history?limit=1 HTTP/1.1" 200 -
+2025-08-31 16:48:13,850 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:13] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:48:17,562 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:17] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:48:28,578 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:28] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:48:48,874 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:48] "[33mGET /register HTTP/1.1[0m" 404 -
+2025-08-31 16:48:48,980 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-31 16:48:56,937 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:56] "[33mGET /login HTTP/1.1[0m" 404 -
+2025-08-31 16:48:56,974 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:48:56] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-31 16:49:02,888 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:49:02] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2025-08-31 16:49:03,344 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:49:03] "[33mGET /idea/suggest HTTP/1.1[0m" 404 -
+2025-08-31 16:49:06,973 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:49:06] "[33mGET /idea/suggest HTTP/1.1[0m" 404 -
+2025-08-31 16:49:34,199 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:49:34] "GET / HTTP/1.1" 200 -
+2025-08-31 16:49:34,335 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:49:34] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:49:55,931 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:49:55] "OPTIONS /api/v1/history?limit=1 HTTP/1.1" 200 -
+2025-08-31 16:50:19,202 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:50:19] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 16:50:27,022 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 16:50:27] "OPTIONS /api/v1/history?limit=1 HTTP/1.1" 200 -
+2025-08-31 17:03:17,130 - werkzeug - [0m[32mINFO[0m[0m - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-08-31 17:03:17,142 - werkzeug - [0m[32mINFO[0m[0m - [33mPress CTRL+C to quit[0m
+2025-08-31 17:03:17,189 - werkzeug - [0m[32mINFO[0m[0m -  * Restarting with stat
+2025-08-31 17:03:26,502 - werkzeug - [0m[33mWARNING[0m[0m -  * Debugger is active!
+2025-08-31 17:03:26,508 - werkzeug - [0m[32mINFO[0m[0m -  * Debugger PIN: 125-724-835
+2025-08-31 17:06:14,988 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:06:14] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 17:06:14,994 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:06:14] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 17:06:37,551 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:06:37] "OPTIONS /api/v1/admin/users HTTP/1.1" 200 -
+2025-08-31 17:06:50,330 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:06:50] "OPTIONS /api/v1/admin/security-logs?limit=50 HTTP/1.1" 200 -
+2025-08-31 17:06:57,149 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:06:57] "OPTIONS /api/v1/admin/stats HTTP/1.1" 200 -
+2025-08-31 17:07:15,770 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:07:15] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -
+2025-08-31 17:08:15,145 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:08:15] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -
+2025-08-31 17:09:15,282 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:09:15] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -
+2025-08-31 17:09:40,432 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:09:40] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 17:10:08,537 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:10:08] "GET /api/v1/health HTTP/1.1" 200 -
+2025-08-31 17:11:08,499 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:11:08] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -
+2025-08-31 17:12:08,514 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:12:08] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -
+2025-08-31 17:13:08,471 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:13:08] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -
+2025-08-31 17:14:08,667 - werkzeug - [0m[32mINFO[0m[0m - 127.0.0.1 - - [31/Aug/2025 17:14:08] "OPTIONS /api/v1/admin/security-logs?limit=1&severity=HIGH HTTP/1.1" 200 -

@@ -1,0 +1,24 @@
+# Core Framework
+flask==2.3.3
+flask-cors==4.0.0
+flask-limiter==3.5.0
+
+# AI & ML
+google-generativeai==0.3.2
+
+# Security & Authentication
+PyJWT==2.8.0
+werkzeug==2.3.7
+
+# Database
+
+# Utilities
+python-dotenv==1.0.0
+colorlog==6.7.0
+requests==2.31.0
+pathlib
+
+# Development (optional)
+pytest==7.4.3
+black==23.9.1
+flake8==6.1.0

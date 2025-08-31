@@ -1,0 +1,1447 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agent AI - Dashboard Administrateur</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        'primary': {
+                            50: '#eef2ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        }
+                    },
+                    animation: {
+                        'fade-in': 'fadeIn 0.5s ease-in-out',
+                        'slide-up': 'slideUp 0.3s ease-out',
+                        'bounce-subtle': 'bounceSubtle 2s infinite',
+                    },
+                    backdropBlur: {
+                        xs: '2px',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(100%); }
+            to { transform: translateY(0); }
+        }
+        @keyframes bounceSubtle {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-3px); }
+            60% { transform: translateY(-2px); }
+        }
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        .chart-container {
+            background: linear-gradient(45deg, #f0f9ff, #e0f2fe);
+        }
+    </style>
+</head>
+<body class="font-inter bg-gray-50 text-gray-800">
+    <!-- Layout Principal -->
+    <div class="flex min-h-screen">
+        <!-- Sidebar -->
+        <div class="w-72 bg-white shadow-xl border-r border-gray-200 flex flex-col fixed h-full z-30">
+            <!-- Header Sidebar -->
+            <div class="gradient-bg text-white p-6">
+                <div class="flex items-center space-x-3">
+                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                        <i class="fas fa-robot text-2xl"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold">Agent AI</h1>
+                        <p class="text-sm opacity-90">Dashboard Admin</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation -->
+            <nav class="flex-1 p-4 space-y-2">
+                <!-- Section: Vue d'ensemble -->
+                <div class="mb-6">
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Vue d'ensemble</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="#dashboard" onclick="showSection('dashboard')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200 active">
+                                <i class="fas fa-chart-pie w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Tableau de bord</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#analytics" onclick="showSection('analytics')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-chart-line w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Analytics</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section: Gestion -->
+                <div class="mb-6">
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Gestion</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="#users" onclick="showSection('users')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-users w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Utilisateurs</span>
+                                <span class="ml-auto bg-indigo-100 text-indigo-600 text-xs px-2 py-1 rounded-full">24</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#api-keys" onclick="showSection('api-keys')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-key w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Clés API</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#projects" onclick="showSection('projects')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-folder-open w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Projets</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section: Monitoring -->
+                <div class="mb-6">
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Monitoring</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="#logs" onclick="showSection('logs')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-file-alt w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Logs</span>
+                                <span class="ml-auto w-2 h-2 bg-green-400 rounded-full animate-pulse"></span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#security" onclick="showSection('security')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-shield-alt w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Sécurité</span>
+                                <span class="ml-auto bg-red-100 text-red-600 text-xs px-2 py-1 rounded-full">3</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#performance" onclick="showSection('performance')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-tachometer-alt w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Performance</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Section: Configuration -->
+                <div class="mb-6">
+                    <h3 class="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Configuration</h3>
+                    <ul class="space-y-1">
+                        <li>
+                            <a href="#settings" onclick="showSection('settings')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-cog w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Paramètres</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#backup" onclick="showSection('backup')" 
+                               class="nav-link flex items-center px-4 py-3 text-gray-700 rounded-lg hover:bg-indigo-50 hover:text-indigo-600 transition-all duration-200">
+                                <i class="fas fa-database w-5 h-5 mr-3"></i>
+                                <span class="font-medium">Sauvegarde</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+
+            <!-- Footer Sidebar -->
+            <div class="p-4 border-t border-gray-200">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-shield text-indigo-600"></i>
+                    </div>
+                    <div class="flex-1">
+                        <p class="text-sm font-medium text-gray-900">Admin</p>
+                        <p class="text-xs text-gray-500">En ligne</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-sign-out-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Contenu Principal -->
+        <div class="flex-1 ml-72">
+            <!-- Header Principal -->
+            <header class="bg-white shadow-sm border-b border-gray-200 sticky top-0 z-20">
+                <div class="px-6 py-4">
+                    <div class="flex items-center justify-between">
+                        <div>
+                            <h1 id="page-title" class="text-2xl font-bold text-gray-900">Tableau de bord</h1>
+                            <p id="page-subtitle" class="text-gray-600 mt-1">Vue d'ensemble de votre Agent IA</p>
+                        </div>
+                        
+                        <div class="flex items-center space-x-4">
+                            <!-- Notifications -->
+                            <button class="relative p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg transition-colors">
+                                <i class="fas fa-bell text-xl"></i>
+                                <span class="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs rounded-full flex items-center justify-center">3</span>
+                            </button>
+                            
+                            <!-- Recherche -->
+                            <div class="relative">
+                                <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                <input type="text" placeholder="Rechercher..." 
+                                       class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent">
+                            </div>
+                            
+                            <!-- Actions rapides -->
+                            <button class="bg-indigo-600 text-white px-4 py-2 rounded-lg hover:bg-indigo-700 transition-colors flex items-center space-x-2">
+                                <i class="fas fa-plus"></i>
+                                <span>Nouveau</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Contenu des Sections -->
+            <main class="p-6">
+                <!-- Section: Dashboard (par défaut) -->
+                <div id="section-dashboard" class="section-content">
+                    <!-- Métriques principales -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- Utilisateurs Actifs -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Utilisateurs Actifs</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">1,247</p>
+                                    <div class="flex items-center mt-2">
+                                        <i class="fas fa-arrow-up text-green-500 text-sm"></i>
+                                        <span class="text-green-600 text-sm ml-1">+12.5%</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-users text-indigo-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Requêtes API -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Requêtes API</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">45.2K</p>
+                                    <div class="flex items-center mt-2">
+                                        <i class="fas fa-arrow-up text-green-500 text-sm"></i>
+                                        <span class="text-green-600 text-sm ml-1">+8.7%</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-chart-line text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Taux de Réussite -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Taux de Réussite</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">98.7%</p>
+                                    <div class="flex items-center mt-2">
+                                        <i class="fas fa-arrow-up text-green-500 text-sm"></i>
+                                        <span class="text-green-600 text-sm ml-1">+0.3%</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-check-circle text-blue-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alertes Sécurité -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Alertes Sécurité</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">3</p>
+                                    <div class="flex items-center mt-2">
+                                        <i class="fas fa-exclamation-triangle text-yellow-500 text-sm"></i>
+                                        <span class="text-yellow-600 text-sm ml-1">À traiter</span>
+                                    </div>
+                                </div>
+                                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-shield-alt text-red-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Graphiques et tableaux -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <!-- Graphique d'activité -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between mb-4">
+                                <h3 class="text-lg font-semibold text-gray-900">Activité des 7 derniers jours</h3>
+                                <div class="flex space-x-2">
+                                    <button class="px-3 py-1 text-sm bg-indigo-100 text-indigo-600 rounded-lg">7j</button>
+                                    <button class="px-3 py-1 text-sm text-gray-600 hover:bg-gray-100 rounded-lg">30j</button>
+                                </div>
+                            </div>
+                            <div class="chart-container h-64 rounded-lg flex items-center justify-center">
+                                <div class="text-center">
+                                    <i class="fas fa-chart-area text-4xl text-indigo-400 mb-4"></i>
+                                    <p class="text-gray-500">Graphique d'activité</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top des utilisateurs -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Top Utilisateurs</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center">
+                                            <span class="text-indigo-600 font-medium text-sm">JD</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">John Doe</p>
+                                            <p class="text-sm text-gray-500">Developer</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-semibold text-gray-900">1,247</p>
+                                        <p class="text-sm text-gray-500">requêtes</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center">
+                                            <span class="text-green-600 font-medium text-sm">AS</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Alice Smith</p>
+                                            <p class="text-sm text-gray-500">Admin</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-semibold text-gray-900">892</p>
+                                        <p class="text-sm text-gray-500">requêtes</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-center justify-between p-3 bg-gray-50 rounded-lg">
+                                    <div class="flex items-center space-x-3">
+                                        <div class="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center">
+                                            <span class="text-purple-600 font-medium text-sm">BJ</span>
+                                        </div>
+                                        <div>
+                                            <p class="font-medium text-gray-900">Bob Johnson</p>
+                                            <p class="text-sm text-gray-500">Developer</p>
+                                        </div>
+                                    </div>
+                                    <div class="text-right">
+                                        <p class="font-semibold text-gray-900">654</p>
+                                        <p class="text-sm text-gray-500">requêtes</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Activité récente -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                        <div class="flex items-center justify-between mb-6">
+                            <h3 class="text-lg font-semibold text-gray-900">Activité Récente</h3>
+                            <button class="text-indigo-600 hover:text-indigo-700 text-sm font-medium">Voir tout</button>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-user-plus text-blue-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Nouvel utilisateur inscrit</p>
+                                    <p class="text-gray-500 text-sm">marie.dupont@email.com s'est inscrite</p>
+                                    <p class="text-gray-400 text-xs mt-1">Il y a 5 minutes</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-check text-green-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Validation de code réussie</p>
+                                    <p class="text-gray-500 text-sm">Script Python validé avec un score de 95/100</p>
+                                    <p class="text-gray-400 text-xs mt-1">Il y a 12 minutes</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start space-x-3">
+                                <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-exclamation-triangle text-yellow-600 text-sm"></i>
+                                </div>
+                                <div class="flex-1">
+                                    <p class="text-gray-900">Alerte de sécurité</p>
+                                    <p class="text-gray-500 text-sm">Tentative d'accès non autorisé détectée</p>
+                                    <p class="text-gray-400 text-xs mt-1">Il y a 1 heure</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Utilisateurs -->
+                <div id="section-users" class="section-content hidden">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <!-- Header du tableau -->
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <h3 class="text-lg font-semibold text-gray-900">Gestion des Utilisateurs</h3>
+                                    <p class="text-gray-600 text-sm mt-1">24 utilisateurs actifs</p>
+                                </div>
+                                <div class="flex space-x-3">
+                                    <button class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors">
+                                        <i class="fas fa-download mr-2"></i>Exporter
+                                    </button>
+                                    <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                                        <i class="fas fa-plus mr-2"></i>Ajouter utilisateur
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Filtres -->
+                        <div class="px-6 py-4 bg-gray-50 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <div class="flex space-x-4">
+                                    <select class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                        <option>Tous les rôles</option>
+                                        <option>Admin</option>
+                                        <option>Developer</option>
+                                        <option>Viewer</option>
+                                    </select>
+                                    <select class="px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                        <option>Tous les statuts</option>
+                                        <option>Actif</option>
+                                        <option>Inactif</option>
+                                        <option>Suspendu</option>
+                                    </select>
+                                </div>
+                                <div class="relative">
+                                    <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+                                    <input type="text" placeholder="Rechercher un utilisateur..." 
+                                           class="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tableau des utilisateurs -->
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            <input type="checkbox" class="rounded border-gray-300">
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Utilisateur
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Rôle
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Statut
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Dernière connexion
+                                        </th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                            Actions
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-6 py-4">
+                                            <input type="checkbox" class="rounded border-gray-300">
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-indigo-600 font-medium">JD</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">John Doe</div>
+                                                    <div class="text-sm text-gray-500">john.doe@example.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-purple-100 text-purple-800">
+                                                Admin
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                <span class="w-1.5 h-1.5 mr-1.5 bg-green-400 rounded-full"></span>
+                                                Actif
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">
+                                            Il y a 2 heures
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900 text-sm">Éditer</button>
+                                                <button class="text-red-600 hover:text-red-900 text-sm">Suspendre</button>
+                                                <button class="text-gray-600 hover:text-gray-900 text-sm">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-6 py-4">
+                                            <input type="checkbox" class="rounded border-gray-300">
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-green-600 font-medium">AS</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Alice Smith</div>
+                                                    <div class="text-sm text-gray-500">alice.smith@example.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
+                                                Developer
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                <span class="w-1.5 h-1.5 mr-1.5 bg-green-400 rounded-full"></span>
+                                                Actif
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">
+                                            Il y a 1 jour
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900 text-sm">Éditer</button>
+                                                <button class="text-red-600 hover:text-red-900 text-sm">Suspendre</button>
+                                                <button class="text-gray-600 hover:text-gray-900 text-sm">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <tr class="hover:bg-gray-50 transition-colors">
+                                        <td class="px-6 py-4">
+                                            <input type="checkbox" class="rounded border-gray-300">
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center">
+                                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
+                                                    <span class="text-yellow-600 font-medium">BJ</span>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Bob Johnson</div>
+                                                    <div class="text-sm text-gray-500">bob.johnson@example.com</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
+                                                Viewer
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
+                                                <span class="w-1.5 h-1.5 mr-1.5 bg-red-400 rounded-full"></span>
+                                                Suspendu
+                                            </span>
+                                        </td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">
+                                            Il y a 3 jours
+                                        </td>
+                                        <td class="px-6 py-4">
+                                            <div class="flex items-center space-x-2">
+                                                <button class="text-indigo-600 hover:text-indigo-900 text-sm">Éditer</button>
+                                                <button class="text-green-600 hover:text-green-900 text-sm">Réactiver</button>
+                                                <button class="text-gray-600 hover:text-gray-900 text-sm">
+                                                    <i class="fas fa-ellipsis-h"></i>
+                                                </button>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Pagination -->
+                        <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+                            <div class="text-sm text-gray-500">
+                                Affichage de 1 à 10 sur 24 utilisateurs
+                            </div>
+                            <div class="flex space-x-1">
+                                <button class="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">Précédent</button>
+                                <button class="px-3 py-1 text-sm bg-indigo-600 text-white rounded">1</button>
+                                <button class="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">2</button>
+                                <button class="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">3</button>
+                                <button class="px-3 py-1 text-sm text-gray-600 border border-gray-300 rounded hover:bg-gray-50">Suivant</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Clés API -->
+                <div id="section-api-keys" class="section-content hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Statistiques des clés API -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Total Clés API</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">47</p>
+                                </div>
+                                <div class="w-12 h-12 bg-indigo-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-key text-indigo-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Clés Actives</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">42</p>
+                                </div>
+                                <div class="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-check-circle text-green-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <div class="flex items-center justify-between">
+                                <div>
+                                    <p class="text-gray-600 text-sm font-medium">Clés Expirées</p>
+                                    <p class="text-3xl font-bold text-gray-900 mt-2">5</p>
+                                </div>
+                                <div class="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center">
+                                    <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Gestion des clés API -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200 flex items-center justify-between">
+                            <h3 class="text-lg font-semibold text-gray-900">Clés API</h3>
+                            <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                                <i class="fas fa-plus mr-2"></i>Générer nouvelle clé
+                            </button>
+                        </div>
+                        <div class="p-6 space-y-4">
+                            <!-- Clé API 1 -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3">
+                                            <h4 class="font-medium text-gray-900">ai_agent_prod_2024</h4>
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                                                Actif
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1">Créée le 15 Jan 2024 • Dernière utilisation: il y a 2h</p>
+                                        <div class="mt-2 flex items-center space-x-4 text-sm text-gray-600">
+                                            <span><i class="fas fa-chart-line mr-1"></i>1,247 requêtes</span>
+                                            <span><i class="fas fa-clock mr-1"></i>Expire dans 89 jours</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="text-gray-600 hover:text-gray-900 p-2">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button class="text-indigo-600 hover:text-indigo-900 p-2">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-900 p-2">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Clé API 2 -->
+                            <div class="border border-gray-200 rounded-lg p-4">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex-1">
+                                        <div class="flex items-center space-x-3">
+                                            <h4 class="font-medium text-gray-900">ai_agent_dev_2024</h4>
+                                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                                Test
+                                            </span>
+                                        </div>
+                                        <p class="text-sm text-gray-500 mt-1">Créée le 10 Jan 2024 • Dernière utilisation: il y a 1 jour</p>
+                                        <div class="mt-2 flex items-center space-x-4 text-sm text-gray-600">
+                                            <span><i class="fas fa-chart-line mr-1"></i>342 requêtes</span>
+                                            <span><i class="fas fa-clock mr-1"></i>Expire dans 94 jours</span>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center space-x-2">
+                                        <button class="text-gray-600 hover:text-gray-900 p-2">
+                                            <i class="fas fa-copy"></i>
+                                        </button>
+                                        <button class="text-indigo-600 hover:text-indigo-900 p-2">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                        <button class="text-red-600 hover:text-red-900 p-2">
+                                            <i class="fas fa-trash"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Logs -->
+                <div id="section-logs" class="section-content hidden">
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <div class="flex items-center justify-between">
+                                <h3 class="text-lg font-semibold text-gray-900">Logs Système</h3>
+                                <div class="flex space-x-3">
+                                    <select class="px-3 py-2 border border-gray-300 rounded-lg text-sm">
+                                        <option>Tous les niveaux</option>
+                                        <option>INFO</option>
+                                        <option>WARNING</option>
+                                        <option>ERROR</option>
+                                        <option>CRITICAL</option>
+                                    </select>
+                                    <button class="px-4 py-2 text-gray-600 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors text-sm">
+                                        <i class="fas fa-refresh mr-2"></i>Actualiser
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <div class="bg-gray-900 rounded-lg p-4 font-mono text-sm text-green-400 h-96 overflow-y-auto">
+                                <div class="space-y-2">
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:23:15</span>
+                                        <span class="text-blue-400 mr-2">[INFO]</span>
+                                        <span>API request processed successfully - User: john.doe@example.com</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:22:45</span>
+                                        <span class="text-green-400 mr-2">[SUCCESS]</span>
+                                        <span>Code validation completed - Security score: 95/100</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:21:30</span>
+                                        <span class="text-yellow-400 mr-2">[WARNING]</span>
+                                        <span>Rate limit approaching for IP: 192.168.1.100</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:20:12</span>
+                                        <span class="text-blue-400 mr-2">[INFO]</span>
+                                        <span>New user registered: alice.smith@example.com</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:19:55</span>
+                                        <span class="text-red-400 mr-2">[ERROR]</span>
+                                        <span>Authentication failed - Invalid API key: ai_agent_***</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:18:33</span>
+                                        <span class="text-blue-400 mr-2">[INFO]</span>
+                                        <span>Database backup completed successfully</span>
+                                    </div>
+                                    <div class="flex">
+                                        <span class="text-gray-500 mr-4">2024-01-15 14:17:21</span>
+                                        <span class="text-green-400 mr-2">[SUCCESS]</span>
+                                        <span>AI suggestion generated - Response time: 1.2s</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Sécurité -->
+                <div id="section-security" class="section-content hidden">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        <!-- Alertes de sécurité -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Alertes Récentes</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-3 p-3 bg-red-50 rounded-lg border border-red-200">
+                                    <div class="w-8 h-8 bg-red-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-exclamation-triangle text-red-600 text-sm"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-red-800">Tentatives de connexion suspectes</p>
+                                        <p class="text-red-700 text-sm">5 tentatives échouées depuis 192.168.1.254</p>
+                                        <p class="text-red-600 text-xs mt-1">Il y a 15 minutes</p>
+                                    </div>
+                                </div>
+                                <div class="flex items-start space-x-3 p-3 bg-yellow-50 rounded-lg border border-yellow-200">
+                                    <div class="w-8 h-8 bg-yellow-100 rounded-full flex items-center justify-center flex-shrink-0">
+                                        <i class="fas fa-shield-alt text-yellow-600 text-sm"></i>
+                                    </div>
+                                    <div class="flex-1">
+                                        <p class="font-medium text-yellow-800">Code potentiellement dangereux</p>
+                                        <p class="text-yellow-700 text-sm">Pattern eval() détecté dans validation</p>
+                                        <p class="text-yellow-600 text-xs mt-1">Il y a 1 heure</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Statistiques de sécurité -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Statistiques</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-600">Tentatives échouées (24h)</span>
+                                    <span class="font-semibold text-red-600">12</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-600">IPs bloquées</span>
+                                    <span class="font-semibold text-yellow-600">3</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-600">Codes validés</span>
+                                    <span class="font-semibold text-green-600">847</span>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <span class="text-gray-600">Score sécurité moyen</span>
+                                    <span class="font-semibold text-blue-600">87/100</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Liste des IPs bloquées -->
+                    <div class="bg-white rounded-xl shadow-sm border border-gray-200">
+                        <div class="px-6 py-4 border-b border-gray-200">
+                            <h3 class="text-lg font-semibold text-gray-900">Adresses IP Bloquées</h3>
+                        </div>
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">IP Address</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Raison</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Date</th>
+                                        <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 text-sm font-mono text-gray-900">192.168.1.254</td>
+                                        <td class="px-6 py-4 text-sm text-gray-600">Tentatives de force brute</td>
+                                        <td class="px-6 py-4 text-sm text-gray-500">2024-01-15 14:20</td>
+                                        <td class="px-6 py-4">
+                                            <button class="text-red-600 hover:text-red-900 text-sm">Débloquer</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Section: Paramètres -->
+                <div id="section-settings" class="section-content hidden">
+                    <div class="space-y-6">
+                        <!-- Configuration API -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Configuration API</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Rate Limit (par heure)</label>
+                                    <input type="number" value="1000" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Timeout (secondes)</label>
+                                    <input type="number" value="30" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Clé API Gemini</label>
+                                    <input type="password" value="sk-******************" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-2">Max taille fichier (MB)</label>
+                                    <input type="number" value="16" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                            </div>
+                            <div class="mt-6">
+                                <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                                    Sauvegarder les modifications
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Configuration Sécurité -->
+                        <div class="bg-white rounded-xl shadow-sm border border-gray-200 p-6">
+                            <h3 class="text-lg font-semibold text-gray-900 mb-4">Sécurité</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Authentification à deux facteurs</h4>
+                                        <p class="text-sm text-gray-500">Sécurité renforcée pour les comptes admin</p>
+                                    </div>
+                                    <button class="relative inline-flex h-6 w-11 items-center rounded-full bg-indigo-600 transition-colors">
+                                        <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-6"></span>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Validation stricte du code</h4>
+                                        <p class="text-sm text-gray-500">Rejeter automatiquement le code dangereux</p>
+                                    </div>
+                                    <button class="relative inline-flex h-6 w-11 items-center rounded-full bg-indigo-600 transition-colors">
+                                        <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-6"></span>
+                                    </button>
+                                </div>
+                                <div class="flex items-center justify-between">
+                                    <div>
+                                        <h4 class="font-medium text-gray-900">Logs détaillés</h4>
+                                        <p class="text-sm text-gray-500">Enregistrer toutes les activités</p>
+                                    </div>
+                                    <button class="relative inline-flex h-6 w-11 items-center rounded-full bg-indigo-600 transition-colors">
+                                        <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform translate-x-6"></span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Modal d'exemple (caché par défaut) -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white rounded-xl shadow-xl max-w-md w-full p-6 animate-slide-up">
+                <div class="flex items-center justify-between mb-4">
+                    <h3 class="text-lg font-semibold text-gray-900">Confirmer l'action</h3>
+                    <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <p class="text-gray-600 mb-6">Êtes-vous sûr de vouloir effectuer cette action ? Cette opération ne peut pas être annulée.</p>
+                <div class="flex space-x-3">
+                    <button onclick="closeModal()" class="flex-1 px-4 py-2 border border-gray-300 text-gray-700 rounded-lg hover:bg-gray-50 transition-colors">
+                        Annuler
+                    </button>
+                    <button class="flex-1 px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors">
+                        Confirmer
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notifications -->
+    <div id="toast-container" class="fixed top-4 right-4 z-50 space-y-2"></div>
+
+    <script>
+        // Configuration
+        const API_BASE_URL = 'http://localhost:5000/api/v1';
+        let API_KEY = localStorage.getItem('admin_api_key');
+
+        // Navigation
+        function showSection(sectionName) {
+            // Cacher toutes les sections
+            document.querySelectorAll('.section-content').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Afficher la section demandée
+            const targetSection = document.getElementById(`section-${sectionName}`);
+            if (targetSection) {
+                targetSection.classList.remove('hidden');
+                targetSection.classList.add('animate-fade-in');
+            }
+            
+            // Mettre à jour la navigation
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('active', 'bg-indigo-50', 'text-indigo-600');
+                link.classList.add('text-gray-700');
+            });
+            
+            const activeLink = document.querySelector(`a[href="#${sectionName}"]`);
+            if (activeLink) {
+                activeLink.classList.add('active', 'bg-indigo-50', 'text-indigo-600');
+                activeLink.classList.remove('text-gray-700');
+            }
+            
+            // Mettre à jour le titre de la page
+            updatePageTitle(sectionName);
+            
+            // Charger les données de la section
+            loadSectionData(sectionName);
+        }
+
+        function updatePageTitle(sectionName) {
+            const titles = {
+                'dashboard': { title: 'Tableau de bord', subtitle: 'Vue d\'ensemble de votre Agent IA' },
+                'analytics': { title: 'Analytics', subtitle: 'Analyses détaillées et métriques' },
+                'users': { title: 'Gestion des Utilisateurs', subtitle: 'Administration des comptes et permissions' },
+                'api-keys': { title: 'Clés API', subtitle: 'Gestion des clés d\'authentification' },
+                'projects': { title: 'Projets', subtitle: 'Suivi des projets et analyses' },
+                'logs': { title: 'Logs Système', subtitle: 'Surveillance et debugging' },
+                'security': { title: 'Sécurité', subtitle: 'Monitoring et alertes de sécurité' },
+                'performance': { title: 'Performance', subtitle: 'Métriques de performance système' },
+                'settings': { title: 'Paramètres', subtitle: 'Configuration système' },
+                'backup': { title: 'Sauvegarde', subtitle: 'Gestion des backups et restauration' }
+            };
+            
+            const pageInfo = titles[sectionName] || { title: 'Dashboard', subtitle: 'Agent IA Admin' };
+            document.getElementById('page-title').textContent = pageInfo.title;
+            document.getElementById('page-subtitle').textContent = pageInfo.subtitle;
+        }
+
+        // Gestion des données
+        async function loadSectionData(sectionName) {
+            if (!API_KEY) {
+                showToast('Clé API manquante', 'error');
+                return;
+            }
+
+            try {
+                switch (sectionName) {
+                    case 'dashboard':
+                        await loadDashboardData();
+                        break;
+                    case 'users':
+                        await loadUsersData();
+                        break;
+                    case 'logs':
+                        await loadLogsData();
+                        break;
+                    case 'security':
+                        await loadSecurityData();
+                        break;
+                    default:
+                        console.log(`Chargement des données pour: ${sectionName}`);
+                }
+            } catch (error) {
+                console.error(`Erreur lors du chargement de ${sectionName}:`, error);
+                showToast('Erreur lors du chargement des données', 'error');
+            }
+        }
+
+        async function loadDashboardData() {
+            // Simuler le chargement des données du dashboard
+            updateMetrics();
+            updateRecentActivity();
+        }
+
+        async function loadUsersData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/users`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Données utilisateurs chargées:', data);
+                    // Mettre à jour le tableau des utilisateurs
+                } else {
+                    throw new Error('Erreur lors du chargement des utilisateurs');
+                }
+            } catch (error) {
+                console.error('Erreur users:', error);
+            }
+        }
+
+        async function loadLogsData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/security-logs?limit=50`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Logs chargés:', data);
+                    // Mettre à jour l'affichage des logs
+                } else {
+                    throw new Error('Erreur lors du chargement des logs');
+                }
+            } catch (error) {
+                console.error('Erreur logs:', error);
+            }
+        }
+
+        async function loadSecurityData() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/stats`, {
+                    headers: {
+                        'X-API-Key': API_KEY,
+                        'Content-Type': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    console.log('Stats sécurité chargées:', data);
+                    // Mettre à jour les statistiques de sécurité
+                } else {
+                    throw new Error('Erreur lors du chargement des stats');
+                }
+            } catch (error) {
+                console.error('Erreur security:', error);
+            }
+        }
+
+        // Utilitaires
+        function updateMetrics() {
+            // Simuler des données en temps réel
+            const metrics = [
+                { selector: '.text-3xl', values: ['1,247', '45.2K', '98.7%', '3'] }
+            ];
+            
+            // Animation des compteurs (simulation)
+            setTimeout(() => {
+                document.querySelectorAll('.text-3xl').forEach((el, index) => {
+                    el.style.transform = 'scale(1.05)';
+                    setTimeout(() => {
+                        el.style.transform = 'scale(1)';
+                    }, 200);
+                });
+            }, 1000);
+        }
+
+        function updateRecentActivity() {
+            // Mise à jour de l'activité récente
+            console.log('Mise à jour de l\'activité récente');
+        }
+
+        // Gestion des modales
+        function showModal(title, message, onConfirm) {
+            const modal = document.getElementById('modal-overlay');
+            modal.querySelector('h3').textContent = title;
+            modal.querySelector('p').textContent = message;
+            modal.classList.remove('hidden');
+            
+            // Gérer la confirmation
+            const confirmBtn = modal.querySelector('.bg-red-600');
+            confirmBtn.onclick = () => {
+                closeModal();
+                if (onConfirm) onConfirm();
+            };
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.add('hidden');
+        }
+
+        // Système de toast
+        function showToast(message, type = 'info') {
+            const toast = document.createElement('div');
+            const colors = {
+                'success': 'bg-green-500',
+                'error': 'bg-red-500',
+                'warning': 'bg-yellow-500',
+                'info': 'bg-blue-500'
+            };
+            
+            const icons = {
+                'success': 'fas fa-check',
+                'error': 'fas fa-exclamation-circle',
+                'warning': 'fas fa-exclamation-triangle',
+                'info': 'fas fa-info-circle'
+            };
+            
+            toast.className = `${colors[type]} text-white px-6 py-4 rounded-lg shadow-lg flex items-center space-x-3 transform transition-all duration-300 translate-x-full`;
+            toast.innerHTML = `
+                <i class="${icons[type]}"></i>
+                <span>${message}</span>
+                <button onclick="this.parentElement.remove()" class="ml-4 text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            `;
+            
+            document.getElementById('toast-container').appendChild(toast);
+            
+            // Animation d'entrée
+            setTimeout(() => {
+                toast.classList.remove('translate-x-full');
+            }, 100);
+            
+            // Suppression automatique
+            setTimeout(() => {
+                toast.classList.add('translate-x-full');
+                setTimeout(() => toast.remove(), 300);
+            }, 5000);
+        }
+
+        // Gestion de l'authentification
+        function checkAuth() {
+            if (!API_KEY) {
+                const key = prompt('Veuillez entrer votre clé API administrateur:');
+                if (key) {
+                    API_KEY = key;
+                    localStorage.setItem('admin_api_key', key);
+                    testAPIConnection();
+                } else {
+                    showToast('Authentification requise', 'error');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        async function testAPIConnection() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/health`);
+                const data = await response.json();
+                
+                if (data.status === 'healthy') {
+                    showToast('Connexion établie avec l\'API', 'success');
+                    loadSectionData('dashboard');
+                } else {
+                    throw new Error('API non disponible');
+                }
+            } catch (error) {
+                showToast('Erreur de connexion à l\'API', 'error');
+                console.error('Erreur API:', error);
+            }
+        }
+
+        // Actions utilisateur
+        function suspendUser(userId) {
+            showModal(
+                'Suspendre l\'utilisateur',
+                'Êtes-vous sûr de vouloir suspendre cet utilisateur ?',
+                () => {
+                    // Logique de suspension
+                    showToast('Utilisateur suspendu', 'success');
+                }
+            );
+        }
+
+        function deleteUser(userId) {
+            showModal(
+                'Supprimer l\'utilisateur',
+                'Cette action est irréversible. Supprimer définitivement cet utilisateur ?',
+                () => {
+                    // Logique de suppression
+                    showToast('Utilisateur supprimé', 'success');
+                }
+            );
+        }
+
+        function generateAPIKey() {
+            showModal(
+                'Générer nouvelle clé API',
+                'Générer une nouvelle clé API ? L\'ancienne sera invalidée.',
+                () => {
+                    // Logique de génération
+                    const newKey = 'ai_agent_' + Math.random().toString(36).substr(2, 16);
+                    showToast(`Nouvelle clé générée: ${newKey}`, 'success');
+                }
+            );
+        }
+
+        // Mise à jour en temps réel
+        function startRealtimeUpdates() {
+            // Mise à jour des métriques toutes les 30 secondes
+            setInterval(() => {
+                if (document.getElementById('section-dashboard').classList.contains('hidden') === false) {
+                    updateMetrics();
+                }
+            }, 30000);
+            
+            // Vérification des alertes toutes les minutes
+            setInterval(() => {
+                checkForAlerts();
+            }, 60000);
+        }
+
+        async function checkForAlerts() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/admin/security-logs?limit=1&severity=HIGH`, {
+                    headers: { 'X-API-Key': API_KEY }
+                });
+                
+                if (response.ok) {
+                    const data = await response.json();
+                    if (data.data && data.data.logs && data.data.logs.length > 0) {
+                        showToast('Nouvelle alerte de sécurité', 'warning');
+                        // Mettre à jour le badge de notifications
+                        updateNotificationBadge();
+                    }
+                }
+            } catch (error) {
+                console.error('Erreur lors de la vérification des alertes:', error);
+            }
+        }
+
+        function updateNotificationBadge() {
+            const badge = document.querySelector('.fa-bell + .absolute');
+            if (badge) {
+                const currentCount = parseInt(badge.textContent) || 0;
+                badge.textContent = currentCount + 1;
+            }
+        }
+
+        // Raccourcis clavier
+        document.addEventListener('keydown', function(e) {
+            // Ctrl/Cmd + K pour la recherche
+            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+                e.preventDefault();
+                document.querySelector('input[placeholder="Rechercher..."]').focus();
+            }
+            
+            // Échap pour fermer les modales
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+
+        // Gestion responsive
+        function handleResize() {
+            if (window.innerWidth < 1024) {
+                // Mode mobile/tablette
+                document.querySelector('.dashboard').classList.add('grid-cols-1');
+                document.querySelector('.w-72').classList.add('hidden');
+            } else {
+                // Mode desktop
+                document.querySelector('.dashboard').classList.remove('grid-cols-1');
+                document.querySelector('.w-72').classList.remove('hidden');
+            }
+        }
+
+        // Initialisation
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('🚀 Dashboard Admin initialisé');
+            
+            // Vérifier l'authentification
+            if (checkAuth()) {
+                testAPIConnection();
+            }
+            
+            // Démarrer les mises à jour en temps réel
+            startRealtimeUpdates();
+            
+            // Gestion responsive
+            window.addEventListener('resize', handleResize);
+            handleResize();
+            
+            // Charger la section par défaut
+            showSection('dashboard');
+            
+            showToast('Dashboard chargé avec succès', 'success');
+        });
+
+        // Gestion des erreurs globales
+        window.addEventListener('error', function(e) {
+            console.error('Erreur JavaScript:', e.error);
+            showToast('Une erreur inattendue s\'est produite', 'error');
+        });
+
+        // Export/Import de configuration
+        function exportConfig() {
+            const config = {
+                timestamp: new Date().toISOString(),
+                settings: {
+                    rateLimit: 1000,
+                    timeout: 30,
+                    maxFileSize: 16
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(config, null, 2)], { type: 'application/json' });
+            const url = URL.createObjectURL(blob);
+            
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `agent-config-${Date.now()}.json`;
+            a.click();
+            
+            URL.revokeObjectURL(url);
+            showToast('Configuration exportée', 'success');
+        }
+
+        function importConfig() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        try {
+                            const config = JSON.parse(e.target.result);
+                            console.log('Configuration importée:', config);
+                            showToast('Configuration importée avec succès', 'success');
+                        } catch (error) {
+                            showToast('Erreur lors de l\'import', 'error');
+                        }
+                    };
+                    reader.readAsText(file);
+                }
+            };
+            
+            input.click();
+        }
+    </script>
+</body>
+</html>

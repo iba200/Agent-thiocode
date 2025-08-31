@@ -27,6 +27,7 @@ import time
 from dataclasses import dataclass
 from enum import Enum
 import uuid
+from flask import render_template
 
 # Configuration du logging avancé
 class ColoredFormatter(logging.Formatter):
@@ -611,10 +612,10 @@ app.config.update(
 
 # Rate limiting
 limiter = Limiter(
-    app,
     key_func=get_remote_address,
     default_limits=["1000 per hour"]
 )
+limiter.init_app(app)
 
 # Initialisation des composants
 GEMINI_API_KEY = os.getenv('GEMINI_API_KEY')
@@ -1141,7 +1142,7 @@ def extend_agent_methods():
                 return False
         
         # Vérification des caractères dangereux
-        dangerous_chars = ['..', '~', ', '`']
+        dangerous_chars = ['..', '~',  '`']
         if any(char in normalized_path for char in dangerous_chars):
             return False
         
@@ -1368,6 +1369,9 @@ def extend_db_methods():
     DatabaseManager.count_errors_today = count_errors_today
     DatabaseManager.count_security_alerts_today = count_security_alerts_today
 
+@app.route("/")
+def home():
+    return render_template("frontend.html")
 # Application des extensions
 extend_agent_methods()
 extend_db_methods()
@@ -1418,7 +1422,7 @@ if __name__ == '__main__':
     logger.info("🌐 API disponible sur: http://localhost:5000")
     
     app.run(
-        debug=False,  # Sécurité: pas de debug en production
+        debug=True,  # Sécurité: pas de debug en production
         host='0.0.0.0',
         port=int(os.getenv('PORT', 5000)),
         threaded=True
